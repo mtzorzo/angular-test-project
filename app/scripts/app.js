@@ -1,23 +1,55 @@
 /*jshint unused: vars */
-define(['angular', 'controllers/main', 'controllers/about'], function (angular, MainCtrl, AboutCtrl) {
+define(['angularAMD', 'angular', 'angular-ui-router'], (angularAMD, angular, uiRouter) => {
 	'use strict';
 
-	return angular
-		.module('angularTestApp', ['angularTestApp.controllers.MainCtrl', 'angularTestApp.controllers.AboutCtrl', 'ui.router', 'ngCookies', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngTouch'])
-		.config(function ($stateProvider, $urlRouterProvider) {
+	let app = angular.module('angularTestApp',
+		[
+			'ui.router'
+		]);
 
-			$urlRouterProvider.otherwise('/');
+	function getRouteByName(name) {
+		let lowerCaseName = name.toLowerCase();
+		let capitalizedName = lowerCaseName.charAt(0).toUpperCase() + lowerCaseName.slice(1);
+		let controller = `controllers/${lowerCaseName}`;
+		let controllerName = `${capitalizedName}Ctrl`;
+		let view = `views/${lowerCaseName}.html`;
 
-			$stateProvider
-				.state('main', {
-					url: '/',
-					templateUrl: 'views/main.html',
-					controller: 'MainCtrl'
-				})
-				.state('about', {
-					url: '/about',
-					templateUrl: 'views/about.html',
-					controller: 'AboutCtrl'
-				});
-		});
+		return {
+			controllerName,
+			controller,
+			view
+		};
+	}
+
+	app.config(($stateProvider, $urlRouterProvider) => {
+
+		$stateProvider
+			.state('default', angularAMD.route({
+				url: '/:controller/:action?',
+				templateUrl: ($stateParams) => {
+					let route = getRouteByName($stateParams.controller);
+					return route.view;
+				},
+				resolve: {
+					loadController: ['$stateParams',
+						($stateParams) => {
+							let route = getRouteByName($stateParams.controller);
+
+							return new Promise((resolve, reject) => {
+								require([route.controller], () => resolve());
+							});
+						}]
+				},
+				controllerProvider: ['$stateParams',
+					($stateParams) => {
+						let route = getRouteByName($stateParams.controller);
+						return route.controllerName;
+					}]
+			}));
+
+		$urlRouterProvider
+			.otherwise('/');
+	});
+
+	return angularAMD.bootstrap(app);
 });

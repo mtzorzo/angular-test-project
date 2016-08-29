@@ -9,8 +9,8 @@ require.config({
 		'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
 		'angular-touch': '../../bower_components/angular-touch/angular-touch',
 		'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
-		bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap',
-		'angular-route': '../../bower_components/angular-route/angular-route'
+		'angularAMD': '../../bower_components/angularAMD/angularAMD',
+		bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap'
 	},
 	shim: {
 		angular: {
@@ -39,34 +39,19 @@ require.config({
 				'angular'
 			],
 			exports: 'angular.mock'
-		}
+		},
+		'angularAMD': [
+			'angular'
+		]
 	},
 	priority: [
 		'angular'
 	],
 	packages: [
 
-	]
+	],
+	deps: ['app']
 });
 
 //http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap
 window.name = 'NG_DEFER_BOOTSTRAP!';
-
-require([
-	'angular',
-	'app',
-	'angular-ui-router',
-	'angular-cookies',
-	'angular-sanitize',
-	'angular-resource',
-	'angular-animate',
-	'angular-touch'
-], function (angular, app, uiRouter, ngCookies, ngSanitize, ngResource, ngAnimate, ngTouch) {
-	'use strict';
-	/* jshint ignore:start */
-	var $html = angular.element(document.getElementsByTagName('html')[0]);
-	/* jshint ignore:end */
-	angular.element().ready(function () {
-		angular.resumeBootstrap([app.name]);
-	});
-});

@@ -1,8 +1,9 @@
-define(['angular'], function (angular) {
+define(['app'], (app) => {
 	'use strict';
 
-	angular.module('angularTestApp.controllers.AboutCtrl', [])
-		.controller('AboutCtrl', function () {
-			console.log('Hello from about controller');
-		});
+	app.controller('AboutCtrl', AboutCtrl);
+
+	function AboutCtrl() {
+		console.log('Hello from about controller');
+	}
 });
