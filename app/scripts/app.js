@@ -25,6 +25,11 @@ define(['angularAMD', 'angular', 'angular-ui-router', 'angular-animate'], (angul
 	app.config(($stateProvider, $urlRouterProvider) => {
 
 		$stateProvider
+			.state('main', {
+				url: '/',
+				templateUrl: 'views/main.html',
+				controller: 'MainCtrl'
+			})
 			.state('default', angularAMD.route({
 				url: '/:controller/:action?',
 				templateUrl: ($stateParams) => {

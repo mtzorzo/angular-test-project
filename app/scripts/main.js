@@ -9,7 +9,7 @@ require.config({
 		'angular-sanitize': '../../bower_components/angular-sanitize/angular-sanitize',
 		'angular-touch': '../../bower_components/angular-touch/angular-touch',
 		'angular-ui-router': '../../bower_components/angular-ui-router/release/angular-ui-router',
-		'angularAMD': '../../bower_components/angularAMD/angularAMD',
+		angularAMD: '../../bower_components/angularAMD/angularAMD',
 		bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap'
 	},
 	shim: {
@@ -40,7 +40,7 @@ require.config({
 			],
 			exports: 'angular.mock'
 		},
-		'angularAMD': [
+		angularAMD: [
 			'angular'
 		]
 	},
@@ -50,7 +50,9 @@ require.config({
 	packages: [
 
 	],
-	deps: ['app']
+	deps: [
+		'app'
+	]
 });
 
 //http://code.angularjs.org/1.2.1/docs/guide/bootstrap#overview_deferred-bootstrap

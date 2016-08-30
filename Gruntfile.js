@@ -221,20 +221,6 @@ module.exports = function (grunt) {
 			}
 		},
 
-		// Make sure code styles are up to par
-		jscs: {
-			options: {
-				config: '.jscsrc',
-				verbose: true
-			},
-			all: {
-				src: [
-					'Gruntfile.js',
-					'<%= yeoman.app %>/scripts/{,*/}*.js'
-				]
-			}
-		},
-
 		// Make sure there are no obvious mistakes
 		jshint: {
 			options: {
@@ -352,7 +338,7 @@ module.exports = function (grunt) {
 			},
 			js: {
 				files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-				tasks: ['newer:jshint:all', 'newer:jscs:all'],
+				tasks: ['newer:jshint:all'],
 				options: {
 					livereload: '<%= connect.options.livereload %>'
 				}
@@ -409,7 +395,6 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('default', [
 		'newer:jshint',
-		'newer:jscs',
 		'build'
 	]);
 
