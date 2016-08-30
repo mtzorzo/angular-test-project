@@ -1,10 +1,11 @@
 /*jshint unused: vars */
-define(['angularAMD', 'angular', 'angular-ui-router'], (angularAMD, angular, uiRouter) => {
+define(['angularAMD', 'angular', 'angular-ui-router', 'angular-animate'], (angularAMD, angular) => {
 	'use strict';
 
 	let app = angular.module('angularTestApp',
 		[
-			'ui.router'
+			'ui.router',
+			'ngAnimate'
 		]);
 
 	function getRouteByName(name) {

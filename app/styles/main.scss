@@ -44,11 +44,16 @@ body {
 	}
 }
 
-.marketing {
-	margin: 40px 0;
+.content {
+	opacity: 1;
 
-	p + h4 {
-		margin-top: 28px;
+	&.ng-enter {
+		transition: opacity 0.5s ease-in-out;
+		opacity: 0;
+	}
+
+	&.ng-enter-active {
+		opacity: 1;
 	}
 }
 
