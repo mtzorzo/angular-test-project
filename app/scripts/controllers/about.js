@@ -1,9 +1,11 @@
-define(['app'], (app) => {
+define(['app', 'services/user'], (app) => {
 	'use strict';
 
-	app.controller('AboutCtrl', AboutCtrl);
-
-	function AboutCtrl() {
+	function AboutCtrl($scope, userService) {
 		console.log('Hello from about controller');
+
+		$scope.name = userService.getUser().name;
 	}
+
+	app.controller('AboutCtrl', ['$scope', 'userService', AboutCtrl]);
 });

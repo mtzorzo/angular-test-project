@@ -1,9 +1,14 @@
-define(['app'], (app) => {
+define(['app', 'services/user'], (app) => {
 	'use strict';
 
-	app.controller('MainCtrl', MainCtrl);
-
-	function MainCtrl() {
+	function MainCtrl($scope, $state, userService) {
 		console.log('Hello from main controller');
+
+		$scope.setName = function (name) {
+			userService.setUserName(name);
+			$state.go('default', {controller: 'about'});
+		};
 	}
+
+	app.controller('MainCtrl', ['$scope', '$state', 'userService', MainCtrl]);
 });

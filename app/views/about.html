@@ -1,6 +1,11 @@
 <div class="jumbotron">
 	<h1>About</h1>
+
 	<p class="lead">
-		This is the about view.
+		This is the about view<span data-ng-if="name">, <strong>{{name}}</strong></span>.
+	</p>
+
+	<p data-ng-if="name">
+		Now, let's proceed to another <a data-ui-sref="default({controller: 'contact'})">view</a>.
 	</p>
 </div>

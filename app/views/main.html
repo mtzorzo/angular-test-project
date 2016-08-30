@@ -1,7 +1,16 @@
 <div class="jumbotron">
-	<h1>Hello!</h1>
+	<h1>Welcome!</h1>
+
 	<p class="lead">
-		This is the home view.
+		Please, tell me a little about you. What's your name?
 	</p>
-	<p><a class="btn btn-lg btn-success" ng-href="#/"><span class="glyphicon glyphicon-ok"></span> Ok</a></p>
+
+	<form data-ng-submit="setName(name)">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Name" data-ng-model="name">
+		</div>
+		<div class="form-group">
+			<button class="btn btn-lg btn-success" data-ng-click=""><span class="glyphicon glyphicon-ok"></span> Ok</button>
+		</div>
+	</form>
 </div>
